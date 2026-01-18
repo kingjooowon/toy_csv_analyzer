@@ -21,7 +21,7 @@ def extract_columns(): # 숫자 column 값
                 
     return columns
 
-def extract_key():
+def extract_key(): # keyword 추출
     keywords = list(extract_columns().keys())
     return keywords
 
@@ -34,17 +34,17 @@ def count_row(): # 행 개수
             
     return row_count
 
-def find_min(a):
+def find_min(a): # 최솟값 찾기
     values = extract_columns()[extract_key()[a]]
     min_value = min(values)
     return min_value
 
-def find_max(a):
+def find_max(a): # 최댓값 찾기
     values = extract_columns()[extract_key()[a]]
     max_value = max(values)
     return max_value
     
-def cal_avg(a):
+def cal_avg(a): # 평균 계산
     total = 0
     avg = 0
     values = extract_columns()[extract_key()[a]]
@@ -55,6 +55,7 @@ def cal_avg(a):
     return avg
 
 if __name__ == "__main__":
+    
     for i in range(3):
         print(f"Column: {extract_key()[i]}\n")
         print(f" - count: {count_row()}\n")
