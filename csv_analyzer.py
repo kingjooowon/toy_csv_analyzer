@@ -1,21 +1,14 @@
 import os
 import csv
-import statistics
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(BASE_DIR, "sample.csv")
 
-def is_number(value): # 숫자인지 확인
-    try:
-        float(value)
-        return value
-    except ValueError:
-        return False
-    
-def extract_colums(): # colums 값 추출
+def extract_columns(): # 숫자 column 값
     columns = {}
     
-    with open("sample.csv", "r", encoding="utf-8") as f:
+    with open(file_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         
         for row in reader:
@@ -28,53 +21,38 @@ def extract_colums(): # colums 값 추출
                 
     return columns
 
-def count_row(): # 행 수 세기
-    row_count = 0
-    with open("sample.csv", "r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        
-        if reader != {}:
-            next(reader) # 헤더 스킵
-            for _ in reader:
-                row_count += 1
-    
-        else:
-            return False
-        
-    return row_count      
+def extract_key():
+    keywords = list(extract_columns().keys())
+    return keywords
 
-def find_min(): # 최솟값 찾기
-    value = extract_colums().values()
-    min_value = int(value[0]) # type: ignore
-    for i in range(len(value)):
-        if min_value > int(value[i]): # type: ignore
-            min_value = int(value[i]) # type: ignore
-        else:
-            continue
-        
+def count_row(): # 행 개수
+    row_count = 0
+    with open(file_path, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for _ in reader:
+            row_count += 1
+            
+    return row_count
+
+def find_min(a):
+    values = extract_columns()[extract_key()[a]]
+    min_value = min(values)
     return min_value
 
-def find_max(): # 최댓값 찾기
-    value = extract_colums().values()
-    max_value = int(value[0]) # type: ignore
-    for i in range(len(value)):
-        if max_value < int(value[i]): # type: ignore
-            max_value = int(value[i]) # type: ignore
-        else:
-            continue
-        
+def find_max(a):
+    values = extract_columns()[extract_key()[a]]
+    max_value = max(values)
     return max_value
-
-def cal_avg(): # 평균 계산
-    value = extract_colums().values()
-    total = 0
-    average = 0
-    for i in range(len(value)):
-        total += int(value[i]) # type: ignore
-
-    average = int(total / len(value))
     
-    return average
+def cal_avg():
+    total = 0
+    avg = 0
+    return 0
 
 if __name__ == "__main__":
-    print(cal_avg())
+    for i in range(3):
+        print(f"Column: {extract_key()[i]}\n")
+        print(f" - count: {count_row()}\n")
+        print(f" - min: {find_min(i)}\n")
+        print(f" - max: {find_max(i)}\n")
+        print(f" - avg: {cal_avg()}")
