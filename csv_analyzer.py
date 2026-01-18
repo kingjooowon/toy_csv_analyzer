@@ -44,10 +44,15 @@ def find_max(a):
     max_value = max(values)
     return max_value
     
-def cal_avg():
+def cal_avg(a):
     total = 0
     avg = 0
-    return 0
+    values = extract_columns()[extract_key()[a]]
+    for i in range(len(values)):
+        total += values[i]
+    
+    avg = int(total) / int(len(values))
+    return avg
 
 if __name__ == "__main__":
     for i in range(3):
@@ -55,4 +60,4 @@ if __name__ == "__main__":
         print(f" - count: {count_row()}\n")
         print(f" - min: {find_min(i)}\n")
         print(f" - max: {find_max(i)}\n")
-        print(f" - avg: {cal_avg()}")
+        print(f" - avg: {cal_avg(i)}")
