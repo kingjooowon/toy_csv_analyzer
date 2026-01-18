@@ -57,8 +57,8 @@ def cal_avg(a): # 평균 계산
 if __name__ == "__main__":
     
     for i in range(3):
-        print(f"Column: {extract_key()[i]}\n")
-        print(f" - count: {count_row()}\n")
-        print(f" - min: {find_min(i)}\n")
-        print(f" - max: {find_max(i)}\n")
-        print(f" - avg: {cal_avg(i)}")
+        print(f"Column: {extract_key()[i]}")
+        print(f" - count: {count_row()}")
+        print(f" - min: {find_min(i)}")
+        print(f" - max: {find_max(i)}")
+        print(f" - avg: {cal_avg(i)}\n")
