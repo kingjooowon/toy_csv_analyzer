@@ -1,9 +1,14 @@
 import os
 import csv
+import sys
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(BASE_DIR, "sample.csv")
+
+if len(sys.argv) > 1:
+    file_path = sys.argv[1] # sample.csv말고 다른 파일 있으면 그 파일
+else:
+    file_path = os.path.join(BASE_DIR, "sample.csv") # 없으면 sample.csv
 
 def extract_columns(): # 숫자 column 값
     columns = {}
